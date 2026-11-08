@@ -1,0 +1,19 @@
+{
+  "name": "quizlet-anki-app",
+  "version": "1.0.0",
+  "description": "Language learning app with Quizlet UI and Anki spaced repetition",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "start": "npm start --workspace=backend"
+  },
+  "overrides": {
+    "axios": "1.14.0"
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "info": {
+    "_postman_id": "quizanki-api",
+    "name": "QuizAnki API",
+    "description": "API collection for QuizAnki language learning app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/auth/register",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/auth/login",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Word Sets",
+      "item": [
+        {
+          "name": "Create Word Set",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Spanish Basics\",\n  \"description\": \"Basic Spanish vocabulary\",\n  \"language\": \"es\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/words/sets",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "words", "sets"]
+            }
+          }
+        },
+        {
+          "name": "Get All Word Sets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/words/sets",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "words", "sets"]
+            }
+          }
+        },
+        {
+          "name": "Import Words",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"hello - hola\\ngoodbye - adiós\\nthank you - gracias\\nplease - por favor\\nwater - agua\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/words/sets/{{SET_ID}}/import",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "words", "sets", "{{SET_ID}}", "import"]
+            }
+          }
+        },
+        {
+          "name": "Get Words from Set",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/words/sets/{{SET_ID}}/words",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "words", "sets", "{{SET_ID}}", "words"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Learning",
+      "item": [
+        {
+          "name": "Get Words to Review",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/learning/sets/{{SET_ID}}/review",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "learning", "sets", "{{SET_ID}}", "review"]
+            }
+          }
+        },
+        {
+          "name": "Submit Learning Result",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"historyId\": \"{{HISTORY_ID}}\",\n  \"quality\": 5,\n  \"mode\": \"typing\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/learning/results",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "learning", "results"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Statistics",
+      "item": [
+        {
+          "name": "Get Set Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/stats/sets/{{SET_ID}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "stats", "sets", "{{SET_ID}}"]
+            }
+          }
+        },
+        {
+          "name": "Get User Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/stats/user",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "stats", "user"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Get Notification Preferences",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/api/notifications/preferences",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "notifications", "preferences"]
+            }
+          }
+        },
+        {
+          "name": "Update Notification Preferences",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailNotifications\": true,\n  \"pushNotifications\": true\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/notifications/preferences",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "notifications", "preferences"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "TOKEN",
+      "value": ""
+    },
+    {
+      "key": "SET_ID",
+      "value": ""
+    },
+    {
+      "key": "HISTORY_ID",
+      "value": ""
+    }
+  ]
+}
