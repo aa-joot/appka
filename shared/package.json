@@ -1,0 +1,9 @@
+{
+  "name": "quizlet-anki-shared",
+  "version": "1.0.0",
+  "description": "Shared types and utilities",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "echo 'Shared utilities ready'"
+  }
+}
